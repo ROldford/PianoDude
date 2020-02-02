@@ -1,6 +1,7 @@
 package Sound;
 
 import jm.music.data.Note;
+import jm.util.Play;
 
 public class PianoNote {
     Note noteA;
@@ -61,6 +62,10 @@ public class PianoNote {
         noteA.setPitch(67);
         noteA.setDynamic(5);
         noteA.setDuration(1);
+    }
+
+    public void play(){
+        Play.midi(noteA);
     }
 
 
