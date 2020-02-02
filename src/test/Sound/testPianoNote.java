@@ -4,10 +4,11 @@ import jm.music.data.Note;
 import jm.util.Play;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
-import Sound.PianoNote;
 
 public class testPianoNote {
+    Note
     private static final int NOTE_A = 57;
     private static final int NOTE_B = 59;
     private static final int NOTE_C = 60;
@@ -35,20 +36,8 @@ public class testPianoNote {
 //        Play.midi();
 //    }
 
-    @Test
-    private void testMakeNoteA(){
-        note.makeNoteA();
-        assertEquals(NOTE_A,);
-    }
+        }
 
-    @Test
-    public void makeNoteA(){
-        noteA = new Note();
-        this.name = "a";
-        noteA.setPitch(57);
-        noteA.setDynamic(volume);
-        noteA.setDuration(length);
-        Play.midi(noteA);
-    }
 
-}
+
+

@@ -1,7 +1,5 @@
 package Sound;
 
-import com.sun.tools.javac.util.List;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -11,10 +9,11 @@ public class SequenceGenerator {
     public ArrayList<String> sequence;
 
     public SequenceGenerator(){
-        sequence = new ArrayList<String>();
+        sequence = new ArrayList<>();
     }
 
     public ArrayList<String> generateString() {
+        sequence.clear();
         sequence.add("c");
 
         Random random = new Random();
