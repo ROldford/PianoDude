@@ -1,5 +1,9 @@
 package Game;
 
+
+import Sound.SequenceGenerator;
+
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 // Game is the loop of one game,
@@ -16,61 +20,66 @@ public class Game {
     private boolean isGameComplete;
     private int score;
     private ArrayList<String> currSong;
-    private Keynote noteInput;
-    //private Keynote note;
+    private SequenceGenerator sqGen;
+    private boolean isListening;
+    private String lastKeyPressed;
 
-    public Game(ArrayList<String> nextSong){
+    public Game(){
         isCorrectKey = true;
         isNextGame = false;
         isGameComplete = false;
-
-        currSong = nextSong;
-        noteInput = new Keynote();
+        isListening = false;
     }
 
-    // EFFECTS: returns the string in accordance to the key pressed
-    public String getKey(){
-        return noteInput.getKeyVal();
+    public void keyPressed(KeyEvent ke) {
+        char temp;
+        ArrayList<String> tempList = new ArrayList<>();
+
+        if (isListening) {
+            temp = ke.getKeyChar();
+            lastKeyPressed = Character.toString(temp);
+            tempList.add(lastKeyPressed);
+            playSong(tempList);
+            // update panel
+        }
+
     }
 
     // EFFECTS: returns true if the input string matches the corresponding string in song
     public boolean checkKey(String expectedNote){
-        return (getKey().equalsIgnoreCase(expectedNote));
+        return (lastKeyPressed.equalsIgnoreCase(expectedNote));
     }
 
     //EFFECTS: play the current song
-    public void playSong(){
+    public void playSong(ArrayList<String> song){
         System.out.println("play song!");//stub
     }
 
     // EFFECTS: starts a new song
     public void startNewSong(){
-        playSong();
+
+        currSong = sqGen.generateString();
         ArrayList<String> song = currSong;
         String note;
 
+        playSong(currSong);
+
         while (!isGameComplete) {
-            isGameComplete = false;
+
             while (isCorrectKey && song.size()>0) {
+                isListening = true;
                 note = song.get(0);
+
                 isCorrectKey = checkKey(note);
+
                 song.remove(0);
             }
+
+            isListening = false;
             isGameComplete = true;
         }
         //start next song
         System.out.println("Song completed");
     }
 
-    // this is a test for the game object
-    public static void main(String[] args) {
-        ArrayList<String> testSong = new ArrayList<>();
-        testSong.add("a");
-        testSong.add("b");
-
-        Game testGame = new Game(testSong);
-
-        testGame.startNewSong();
-
-    }
 }
