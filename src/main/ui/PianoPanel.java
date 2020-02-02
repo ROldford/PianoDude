@@ -56,10 +56,13 @@ public class PianoPanel extends JPanel {
     }
 
     public void brightenKey(String keyName) {
+        darkenAllKeys();
         pianoKeys.get(keyName).brightenColor();
     }
 
-    public void darkenKey(String keyName) {
-        pianoKeys.get(keyName).resetColor();
+    public void darkenAllKeys() {
+        for (String key: PIANO_KEYS) {
+            pianoKeys.get(key).resetColor();
+        }
     }
 }

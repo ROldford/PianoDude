@@ -60,13 +60,15 @@ public class Game {
                 piano.repaint();
                 playSong(lastKeyPressed);
                 //piano.darkenKey(lastKeyPressed);
-                piano.repaint();
+                //piano.repaint();
 
             } else if (lastKeyPressed.equalsIgnoreCase("r")) {
                 for (String s: currSong) {
                     playSong(s);
                 }
             } else if (lastKeyPressed.equalsIgnoreCase("n")) {
+
+                //piano.repaint();
                 currSong = sqGen.generateString();
                 for (String s: currSong) {
                     playSong(s);
