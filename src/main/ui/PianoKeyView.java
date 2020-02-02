@@ -9,7 +9,10 @@ public class PianoKeyView {
     private int height;
     private int cornerRadius;
     private int borderThickness;
+    private Color brightColor;
+    private Color normalColor;
     private Color color;
+
 
     // EFFECTS: Construct new PianoKeyView with given origin, color and dimension
     public PianoKeyView(int x, int y, int w, int h, int cr, int bt, Color c) {
@@ -19,6 +22,8 @@ public class PianoKeyView {
         this.height = h;
         this.cornerRadius = cr;
         this.borderThickness = bt;
+        this.normalColor = c;
+        this.brightColor = c.brighter();
         this.color = c;
     }
 
@@ -35,5 +40,13 @@ public class PianoKeyView {
                 height - 2 * borderThickness,
                 cornerRadius, cornerRadius);
         g.setColor(savedCol);
+    }
+
+    public void brightenColor() {
+        this.color = brightColor;
+    }
+
+    public void resetColor() {
+        this.color = normalColor;
     }
 }
