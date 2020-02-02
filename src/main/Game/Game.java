@@ -6,6 +6,7 @@ import ui.PianoPanel;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 // Game is the loop of one game,
 // Game would start with certain key (start key)
@@ -16,6 +17,10 @@ import java.util.ArrayList;
 //      end game when out of sequence
 
 public class Game {
+
+    public static final ArrayList<String> PIANO_KEYS = new ArrayList<>(Arrays.asList(
+            "a", "b", "c", "d", "e", "f", "g"));
+
     private boolean isCorrectKey;
     private boolean isNextGame;
     private boolean isGameComplete;
@@ -47,12 +52,20 @@ public class Game {
     public void keyPressed(KeyEvent ke) {
         char temp;
 
+
         if (isListening) {
             temp = ke.getKeyChar();
             lastKeyPressed = Character.toString(temp).toLowerCase();
+
+            if (PIANO_KEYS.contains(lastKeyPressed)) {
             playSong(lastKeyPressed);
             updatePanel(lastKeyPressed);
             b = true;
+            } else if (lastKeyPressed.equalsIgnoreCase("r")) {
+                for (String s: currSong) {
+                    playSong(s);
+                }
+            }
         }
 
     }
@@ -75,6 +88,7 @@ public class Game {
     // EFFECTS: update the piano panel with the last pressed key
     public void updatePanel(String inputKey) {
         piano.brightenKey(inputKey.toLowerCase());
+        //piano.paintComponents();
     }
 
 

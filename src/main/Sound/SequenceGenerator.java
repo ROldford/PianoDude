@@ -18,7 +18,7 @@ public class SequenceGenerator {
         sequence.add("c");
 
         Random random = new Random();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 1; i++) {
             int index = random.nextInt(NOTES.size());
             sequence.add(NOTES.get(index));
         }

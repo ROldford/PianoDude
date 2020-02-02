@@ -23,7 +23,7 @@ public class PianoKeyView {
         this.cornerRadius = cr;
         this.borderThickness = bt;
         this.normalColor = c;
-        this.brightColor = c.brighter();
+        this.brightColor = Color.WHITE;
         this.color = c;
     }
 
