@@ -35,7 +35,7 @@ public class Game {
 
     // EFFECTS: returns true if the input string matches the corresponding string in song
     public boolean checkKey(String expectedNote){
-        return (expectedNote == getKey());
+        return (getKey().equalsIgnoreCase(expectedNote));
     }
 
     //EFFECTS: play the current song
@@ -55,7 +55,6 @@ public class Game {
                 note = song.get(0);
                 isCorrectKey = checkKey(note);
                 song.remove(0);
-                isCorrectKey = true;
             }
             isGameComplete = true;
         }
