@@ -18,13 +18,7 @@ public class PianoNote {
 
     public void makeNoteA(){
         noteA = new Note();
-        this.name = "A";
-        noteA.setPitch(57);
-        noteA.setDynamic(5);
-        noteA.setDuration(1);
-    }public void makeNoteA(){
-        noteA = new Note();
-        this.name = "A";
+        this.name = "a";
         noteA.setPitch(57);
         noteA.setDynamic(5);
         noteA.setDuration(1);
