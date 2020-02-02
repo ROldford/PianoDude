@@ -21,6 +21,8 @@ public class PianoPanel extends JPanel {
     public PianoPanel() {
         this.pianoKeys = new ArrayList<PianoKeyView>();
         for (int i = 0; i < KEYS_COUNT; i++) {
+            float hue = (i * 1.0F) / KEYS_COUNT;
+            Color color = new Color(Color.HSBtoRGB(hue, 1.0F, 1.0F));
             pianoKeys.add(new PianoKeyView(
                     PIANO_BORDER + i * (KEY_WIDTH + KEY_SPACING),
                     PIANO_BORDER,
@@ -28,7 +30,7 @@ public class PianoPanel extends JPanel {
                     KEY_HEIGHT,
                     CORNER_RADIUS,
                     BORDER_THICKNESS,
-                    Color.WHITE));
+                    color));
         }
         setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         setBackground(Color.GRAY);
