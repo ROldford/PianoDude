@@ -8,6 +8,6 @@ public class PianoNote {
         player = new Player();
     }
     public void playNote(String note) {
-        player.play(note);
+        player.play(note.toUpperCase());
     }
 }

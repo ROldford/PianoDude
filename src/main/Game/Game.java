@@ -2,6 +2,7 @@ package Game;
 
 
 import Sound.*;
+import ui.PianoPanel;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -24,12 +25,20 @@ public class Game {
     private boolean isListening;
     private String lastKeyPressed;
     private PianoNote notePlayer;
+    private PianoPanel piano;
+    private boolean b;
 
-    public Game(){
+    public Game(PianoPanel pp){
         isCorrectKey = true;
         isNextGame = false;
         isGameComplete = false;
         isListening = false;
+        lastKeyPressed = "";
+        b = false;
+
+        sqGen = new SequenceGenerator();
+        notePlayer = new PianoNote();
+        piano = pp;
     }
 
     // MODIFIES: this
@@ -40,15 +49,21 @@ public class Game {
 
         if (isListening) {
             temp = ke.getKeyChar();
-            lastKeyPressed = Character.toString(temp).toUpperCase();
+            lastKeyPressed = Character.toString(temp).toLowerCase();
             playSong(lastKeyPressed);
             updatePanel(lastKeyPressed);
+            b = true;
         }
 
     }
 
     // EFFECTS: returns true if the input string matches the corresponding string in song
     public boolean checkKey(String expectedNote){
+
+        while (!b) {
+
+        }
+
         return (lastKeyPressed.equalsIgnoreCase(expectedNote));
     }
 
@@ -59,7 +74,7 @@ public class Game {
 
     // EFFECTS: update the piano panel with the last pressed key
     public void updatePanel(String inputKey) {
-        System.out.println("update panel" + inputKey);// stub
+        piano.brightenKey(inputKey.toLowerCase());
     }
 
 

@@ -16,13 +16,15 @@ public class PianoDude extends JFrame {
         super("Piano Dude");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(true);
-        game = new Game();
         pp = new PianoPanel();
+        game = new Game(pp);
+
         add(pp);
         addKeyListener(new KeyHandler());
         pack();
         centerOnScreen();
         setVisible(true);
+        game.startNewSong();
     }
 
     // MODIFIES: this
@@ -42,6 +44,7 @@ public class PianoDude extends JFrame {
 
 
     public static void main(String[] args) {
+
         new PianoDude();
     }
 }
