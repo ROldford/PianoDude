@@ -38,8 +38,7 @@ public class Game {
         isNextGame = false;
         isGameComplete = false;
         isListening = false;
-        lastKeyPressed = "";
-        b = false;
+        this.b = false;
 
         sqGen = new SequenceGenerator();
         notePlayer = new PianoNote();
@@ -52,32 +51,36 @@ public class Game {
     public void keyPressed(KeyEvent ke) {
         char temp;
 
-
         if (isListening) {
             temp = ke.getKeyChar();
             lastKeyPressed = Character.toString(temp).toLowerCase();
 
             if (PIANO_KEYS.contains(lastKeyPressed)) {
-            playSong(lastKeyPressed);
-            updatePanel(lastKeyPressed);
-            b = true;
+                piano.brightenKey(lastKeyPressed);
+                piano.repaint();
+                playSong(lastKeyPressed);
+                //piano.darkenKey(lastKeyPressed);
+                piano.repaint();
+
             } else if (lastKeyPressed.equalsIgnoreCase("r")) {
                 for (String s: currSong) {
                     playSong(s);
                 }
+            } else if (lastKeyPressed.equalsIgnoreCase("n")) {
+                startNewSong();
             }
         }
-
     }
 
     // EFFECTS: returns true if the input string matches the corresponding string in song
     public boolean checkKey(String expectedNote){
 
-        while (!b) {
-
+        while(true) {
+            if (PIANO_KEYS.contains(lastKeyPressed)) {
+                return (lastKeyPressed.equalsIgnoreCase(expectedNote));
+            }
         }
 
-        return (lastKeyPressed.equalsIgnoreCase(expectedNote));
     }
 
     // EFFECTS: play the current song
@@ -88,47 +91,56 @@ public class Game {
     // EFFECTS: update the piano panel with the last pressed key
     public void updatePanel(String inputKey) {
         piano.brightenKey(inputKey.toLowerCase());
-        //piano.paintComponents();
+        piano.repaint();
     }
 
 
     // EFFECTS: starts a new song
     public void startNewSong(){
 
-        while (!isNextGame) {
+        isCorrectKey = true;
+        isNextGame = false;
+        isGameComplete = false;
+        isListening = false;
 
-            currSong = sqGen.generateString();
-            ArrayList<String> song = currSong;
-            String note;
 
-            for (String s: currSong) {
-                playSong(s);
-            }
+        currSong = sqGen.generateString();
+        ArrayList<String> song = currSong;
+        String note;
 
-            while (!isGameComplete) {
+        System.out.println(currSong);
 
-                while (isCorrectKey && song.size() > 0) {
-                    isListening = true;
-                    note = song.get(0);
-
-                    isCorrectKey = checkKey(note);
-
-                    song.remove(0);
-                }
-
-                if (song.size() == 0) {
-                    isListening = false;
-                    isGameComplete = true;
-                }
-
-                System.out.println("try again!");
-            }
-
-            if (isGameComplete && isCorrectKey) {
-                System.out.println("Congratulation! You complete the song!\n next song!");
-            }
+        for (String s : currSong) {
+            playSong(s);
         }
 
-    }
+        while (!isGameComplete) {
 
+            while (isCorrectKey && song.size() > 0) {
+                isListening = true;
+                note = song.get(0);
+
+                //while (!b) {}
+
+                isCorrectKey = checkKey(note);
+
+                System.out.println(isCorrectKey);
+
+
+                song.remove(0);
+            }
+
+            if (song.size() == 0) {
+                isListening = false;
+                isGameComplete = true;
+            }
+
+            System.out.println("try again!");
+        }
+
+        if (isGameComplete && isCorrectKey) {
+            System.out.println("Congratulation! You complete the song!\n next song!");
+        }
+    }
+    
 }

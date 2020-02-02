@@ -12,7 +12,7 @@ public class PianoPanel extends JPanel {
     public static final int KEY_WIDTH = 50;
     public static final int KEY_HEIGHT = 100;
     public static final ArrayList<String> PIANO_KEYS = new ArrayList<>(Arrays.asList(
-            "a", "b", "c", "d", "e", "f", "g"));
+            "c", "d", "e", "f", "g","a", "b"));
     public static final int KEYS_COUNT = 7;
     public static final int CORNER_RADIUS = 3;
     public static final int BORDER_THICKNESS = 2;
