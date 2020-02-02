@@ -1,7 +1,7 @@
 package Game;
 
 
-import Sound.SequenceGenerator;
+import Sound.*;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -23,6 +23,7 @@ public class Game {
     private SequenceGenerator sqGen;
     private boolean isListening;
     private String lastKeyPressed;
+    private PianoNote notePlayer;
 
     public Game(){
         isCorrectKey = true;
@@ -36,12 +37,10 @@ public class Game {
     //          call play song on last pressed note, update piano panel
     public void keyPressed(KeyEvent ke) {
         char temp;
-        ArrayList<String> tempList = new ArrayList<>();
 
         if (isListening) {
             temp = ke.getKeyChar();
             lastKeyPressed = Character.toString(temp).toUpperCase();
-            tempList.add(lastKeyPressed);
             playSong(lastKeyPressed);
             updatePanel(lastKeyPressed);
         }
@@ -55,7 +54,7 @@ public class Game {
 
     // EFFECTS: play the current song
     public void playSong(String note){
-        System.out.println("play song!" + note);//stub
+        notePlayer.playNote(note);
     }
 
     // EFFECTS: update the piano panel with the last pressed key
@@ -72,7 +71,7 @@ public class Game {
             currSong = sqGen.generateString();
             ArrayList<String> song = currSong;
             String note;
-            
+
             for (String s: currSong) {
                 playSong(s);
             }
