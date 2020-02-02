@@ -7,15 +7,15 @@ import java.util.ArrayList;
 
 public class PianoPanel extends JPanel {
     private HashMap<String, PianoKeyView> pianoKeys;
-    public static final int PIANO_BORDER = 5;
-    public static final int KEY_SPACING = 1;
-    public static final int KEY_WIDTH = 50;
-    public static final int KEY_HEIGHT = 100;
+    public static final int PIANO_BORDER = 5*4;
+    public static final int KEY_SPACING = 1*4;
+    public static final int KEY_WIDTH = 50*4;
+    public static final int KEY_HEIGHT = 100*4;
     public static final ArrayList<String> PIANO_KEYS = new ArrayList<>(Arrays.asList(
             "c", "d", "e", "f", "g","a", "b"));
     public static final int KEYS_COUNT = 7;
     public static final int CORNER_RADIUS = 3;
-    public static final int BORDER_THICKNESS = 2;
+    public static final int BORDER_THICKNESS = 2*4;
     public static final int PANEL_WIDTH = PIANO_BORDER * 2 + KEY_WIDTH * KEYS_COUNT + KEY_SPACING * (KEYS_COUNT - 1);
     public static final int PANEL_HEIGHT = PIANO_BORDER * 2 + KEY_HEIGHT;
 

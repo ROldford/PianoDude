@@ -67,7 +67,11 @@ public class Game {
                     playSong(s);
                 }
             } else if (lastKeyPressed.equalsIgnoreCase("n")) {
-                startNewSong();
+                currSong = sqGen.generateString();
+                for (String s: currSong) {
+                    playSong(s);
+                }
+                System.out.println(currSong);
             }
         }
     }
@@ -124,8 +128,6 @@ public class Game {
 
                 isCorrectKey = checkKey(note);
 
-                System.out.println(isCorrectKey);
-
 
                 song.remove(0);
             }
@@ -142,5 +144,5 @@ public class Game {
             System.out.println("Congratulation! You complete the song!\n next song!");
         }
     }
-    
+
 }
